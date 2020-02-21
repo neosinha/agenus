@@ -10,9 +10,10 @@ import base64, json
 import logging
 import datetime, time, os, sys, shutil
 import cherrypy as HttpServer
-from PixelateCore import PixelateCore
+from AgenusCore2 import AgenusCore
 
-class PixelateServer(object):
+
+class AgenusAPI(object):
     '''
     classdocs
     '''
@@ -41,7 +42,7 @@ class PixelateServer(object):
             cascDir = cascPath
 
         logging.info('Cascade path is %s' % cascPath)
-        self.pxlcore = PixelateCore(cascadePath=cascPath)
+        self.pxlcore = AgenusCore(cascadePath=cascPath)
             
     @HttpServer.expose
     def index(self):
@@ -182,8 +183,8 @@ if __name__ == '__main__':
         'tools.staticdir.dir': staticwww}
             }
 
-    HttpServer.quickstart(PixelateServer(staticdir=staticwww,
-                                         cascPath=cascPath),
+    HttpServer.quickstart(AgenusAPI(staticdir=staticwww,
+                                    cascPath=cascPath),
                             '/', conf)
 
 
